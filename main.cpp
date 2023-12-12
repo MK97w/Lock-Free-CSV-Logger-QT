@@ -1,5 +1,6 @@
 
 #include <QCoreApplication>
+#include <QDir>
 #include "xlsxdocument.h"
 #include "qDebug.h"
 #include "xlsxchartsheet.h"
@@ -12,9 +13,8 @@ using namespace QXlsx;
 
 void setExcelSheet(QXlsx::Document& doc)
 {
-    QXlsx::Format format;
-
-    for(auto i = 2; i<14; i++){
+    for(auto i = 2; i<14; i++)
+    {
         doc.write(1,i, [=](){
                     QString res{};
                     if(0 == i% 4)
@@ -36,8 +36,7 @@ void setExcelSheet(QXlsx::Document& doc)
 
         }());
         doc.setColumnWidth(i,16); //found with error and trial
-
-}
+    }
 }
 
 
@@ -45,6 +44,13 @@ void setExcelSheet(QXlsx::Document& doc)
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+    QDir mainDir("C:/Test_Results");
+    if(!mainDir.exists())
+    {
+        mainDir.mkdir("C:/Test_Results");
+        qDebug()<<"s";
+    }
+    qDebug()<< QDir("C:/Test_Results").exists();
 
     QXlsx::Document xlsx;
     QDateTime date = QDateTime::currentDateTime();
