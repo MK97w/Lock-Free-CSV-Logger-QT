@@ -10,13 +10,15 @@ class directory_manager : public QObject
 public:
     explicit directory_manager(QObject *parent = nullptr);
     QString get_dirName();
+    void createNewDirUnderMain(QString);
 
 signals:
 
 
 private:
-    const QString mainDirectory;
-    QString currentDir{};
+    const QString m_mainDirName;
+    QString currentPath{};
+    QDir mainDir;
 };
 
 #endif // DIRECTORY_MANAGER_H

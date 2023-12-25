@@ -8,14 +8,13 @@
 #include "xlsxchart.h"
 #include "xlsxrichstring.h"
 #include "xlsxworkbook.h"
+#include "directory_manager.h"
 #include "date_time.h"
-
-const QString mainDirName = "C:/Application_Results";
-date_time dt;
 
 
 using namespace QXlsx;
-
+directory_manager dirMan;
+date_time dt;
 
 void setExcelSheet(QXlsx::Document& doc)
 {
@@ -53,22 +52,9 @@ int main(int argc, char *argv[])
 
     QXlsx::Document xlsx;
 
-    qDebug()<<dt.now();
-    qDebug()<<dt.today();
+    dirMan.createNewDirUnderMain(dt.today());
 
-//    QDir mainDir(mainDirName);
-//    if(!mainDir.exists())
-//    {
-//        mainDir.mkdir(mainDirName);
-//        QDir testDate(mainDirName+formattedDate);
-//        if(!testDate.exists())
-//        {
-
-//        }
-//    }
-    //QString formattedTime = date.toString("Log_hh_mm");
-    //QByteArray formattedTimeMsg = formattedTime.toLocal8Bit();
-    setExcelSheet(xlsx);
+    //setExcelSheet(xlsx);
     //xlsx.write("A1", "Hello Qt!"); // write "Hello Qt!" to cell(A,1). it's shared string.
     //xlsx.saveAs(formattedTime+".xlsx"); // save the document as 'Test.xlsx'
 
