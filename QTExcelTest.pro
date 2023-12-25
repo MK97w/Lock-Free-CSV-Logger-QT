@@ -13,6 +13,8 @@ QXLSX_SOURCEPATH=./source/  # current QXlsx source path is ./source/
 include(./QXlsx.pri)
 
 SOURCES += \
+        date_time.cpp \
+        directory_manager.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -21,4 +23,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    date_time.h \
+    directory_manager.h \
     spsc_lock_free_queue.h

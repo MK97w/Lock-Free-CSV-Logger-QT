@@ -8,6 +8,12 @@
 #include "xlsxchart.h"
 #include "xlsxrichstring.h"
 #include "xlsxworkbook.h"
+#include "date_time.h"
+
+const QString mainDirName = "C:/Application_Results";
+date_time dt;
+
+
 using namespace QXlsx;
 
 
@@ -44,21 +50,27 @@ void setExcelSheet(QXlsx::Document& doc)
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    QDir mainDir("C:/Test_Results");
-    if(!mainDir.exists())
-    {
-        mainDir.mkdir("C:/Test_Results");
-        qDebug()<<"s";
-    }
-    qDebug()<< QDir("C:/Test_Results").exists();
 
     QXlsx::Document xlsx;
-    QDateTime date = QDateTime::currentDateTime();
-    QString formattedTime = date.toString("Log_hh_mm");
+
+    qDebug()<<dt.now();
+    qDebug()<<dt.today();
+
+//    QDir mainDir(mainDirName);
+//    if(!mainDir.exists())
+//    {
+//        mainDir.mkdir(mainDirName);
+//        QDir testDate(mainDirName+formattedDate);
+//        if(!testDate.exists())
+//        {
+
+//        }
+//    }
+    //QString formattedTime = date.toString("Log_hh_mm");
     //QByteArray formattedTimeMsg = formattedTime.toLocal8Bit();
     setExcelSheet(xlsx);
     //xlsx.write("A1", "Hello Qt!"); // write "Hello Qt!" to cell(A,1). it's shared string.
-    xlsx.saveAs(formattedTime+".xlsx"); // save the document as 'Test.xlsx'
+    //xlsx.saveAs(formattedTime+".xlsx"); // save the document as 'Test.xlsx'
 
     return 0;
     //return a.exec();
