@@ -13,5 +13,20 @@ QString date_time::today()
 
 QString date_time::now()
 {
-    return  QDateTime::currentDateTime().toString("hh_mm");
+    return  QDateTime::currentDateTime().toString("hh:mm");
+}
+
+QString date_time::now(int)
+{
+    return  QDateTime::currentDateTime().toString("hh.mm");
+}
+
+void date_time::set_applicationStartTime(QString str_time)
+{
+    applicationStartTime = str_time;
+}
+
+QString date_time::get_applicationStartTime()
+{
+    return applicationStartTime;
 }

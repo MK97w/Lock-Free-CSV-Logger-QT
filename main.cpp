@@ -10,6 +10,7 @@
 #include "xlsxworkbook.h"
 #include "directory_manager.h"
 #include "date_time.h"
+#include <unistd.h>
 
 
 using namespace QXlsx;
@@ -48,15 +49,20 @@ void setExcelSheet(QXlsx::Document& doc)
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+   QCoreApplication a(argc, argv);
 
-    QXlsx::Document xlsx;
+   QXlsx::Document xlsx;
+   dt.set_applicationStartTime(dt.now(0));
+   qDebug()<<dt.now();
 
-    dirMan.createNewDirUnderMain(dt.today());
+   dirMan.createNewDirUnderMain(dt.today());
 
-    //setExcelSheet(xlsx);
-    //xlsx.write("A1", "Hello Qt!"); // write "Hello Qt!" to cell(A,1). it's shared string.
-    //xlsx.saveAs(formattedTime+".xlsx"); // save the document as 'Test.xlsx'
+   setExcelSheet(xlsx);
+   //xlsx.write("A1", "Hello Qt!"); // write "Hello Qt!" to cell(A,1). it's shared string.
+   //xlsx.write("A3", "Hello Qt!");
+   sleep(120);
+   xlsx.saveAs(dirMan.get_dirName()+"/"+dt.get_applicationStartTime()+"-"+dt.now(0)+".xlsx"); // save the document as 'Test.xlsx'
+   //xlsx.write("A2", "Hello Qt!"); // write "Hello Qt!" to cell(A,1). it's shared string.
 
     return 0;
     //return a.exec();

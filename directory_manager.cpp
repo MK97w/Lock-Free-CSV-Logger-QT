@@ -16,6 +16,11 @@ directory_manager::directory_manager(QObject *parent)
         qDebug()<<"Main dir already exists";
 }
 
+QString directory_manager::get_dirName()
+{
+    return currentPath;
+}
+
 void directory_manager::createNewDirUnderMain(QString newDirName)
 {
     currentPath = m_mainDirName+"/"+newDirName;

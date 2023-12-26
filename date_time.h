@@ -13,6 +13,15 @@ public:
 
     QString today();
     QString now();
+    QString now(int);
+
+    void set_applicationStartTime(QString);
+    QString get_applicationStartTime();
+
+
+private:
+    QString applicationStartTime{};
+   // QString applicationStopTime{};
 
 signals:
 
